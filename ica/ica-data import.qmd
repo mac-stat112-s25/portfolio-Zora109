@@ -1,0 +1,10 @@
+---
+title: "ica-data import"
+format: html
+---
+
+```{r}
+library(tidyverse)
+IMBD<-read_csv("..data/imdb_5000_messy.csv")
+```
+
