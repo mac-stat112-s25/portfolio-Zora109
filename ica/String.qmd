@@ -1,0 +1,76 @@
+---
+title: "String"
+format: html
+---
+
+```{r}
+courses <- read.csv("https://mac-stat.github.io/data/registrar.csv")
+
+# Check it out
+head(courses)
+```
+
+```{r}
+library(tidyverse)
+
+classes <- data.frame(
+  sem        = c("SP2023", "FA2023", "SP2024"),
+  area       = c("History", "Math", "Anthro"),
+  enroll     = c("30 - people", "20 - people", "25 - people"),
+  instructor = c("Ernesto Capello", "Lori Ziegelmeier", "Arjun Guneratne")
+)
+
+classes
+```
+```{r}
+# How can we do this after mutating?
+classes |> 
+  mutate(spring = str_detect(sem, "SP"))
+```
+```{r}
+# We don't have to mutate first!
+classes |> 
+  filter(str_detect(sem, "SP"))
+```
+```{r}
+# Yet another way
+classes |> 
+  filter(!str_detect(sem, "FA"))
+```
+```{r}
+classes |> 
+  separate(instructor, c("first", "last"), sep = " ")
+```
+```{r}
+# Sometimes the function can "intuit" how we want to separate the variable
+classes |> 
+  separate(instructor, c("first", "last"))
+```
+```{r}
+# (?<=[SP|FA]): any character *before* the split point is a "SP" or "FA"
+# (?=2): the first character *after* the split point is a 2
+classes |> 
+  separate(sem, 
+          c("semester", "year"),
+          "(?<=[SP|FA])(?=2)")
+```
+
+```{r}
+# More general:
+# (?<=[a-zA-Z]): any character *before* the split point is a lower or upper case letter
+# (?=[0-9]): the first character *after* the split point is number
+classes |> 
+  separate(sem, 
+          c("semester", "year"),
+          "(?<=[A-Z])(?=[0-9])")
+```
+```{r}
+# More general:
+# (?<=[a-zA-Z]): any character *before* the split point is a lower or upper case letter
+# (?=[0-9]): the first character *after* the split point is number
+classes |> 
+  separate(sem, 
+          c("semester", "year"),
+          "(?<=[A-Z])(?=[0-9])")\
+```
+
