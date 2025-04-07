@@ -2,4 +2,75 @@
 title: "Univariate Viz"
 ---
 
+```
+
 Use this file for practice with the **univariate viz** in-class activity.  Refer to the class website for details.
+```{r}
+# Import data
+hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
+```
+```{r}
+# Import data
+hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
+```
+```{r}
+# Import data
+hikes <- read.csv("")
+```
+```{r}
+# Import data
+survey <- read.csv("https://hash-mac.github.io/stat112site-s25/data/survey.csv")
+```
+```{r}
+hikes <- read.csv(" https://mac-stat.github.io/data/high_peaks.csv")
+```
+```{r}
+hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
+```
+```{r}
+hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
+```
+head(hikes)
+
+head(hikes)
+
+
+head(hikes)
+# Use the ggplot function
+ggplot(hikes, aes(x = rating))
+# Use the ggplot function
+ggplot(hikes, aes(x = rating))
+```{r}
+# Load the package
+library(tidyverse)
+```
+
+# COMMENT on the change in the code and the corresponding change in the plot
+ggplot(hikes, aes(x = rating)) +
+  geom_bar(color = "orange", fill = "blue")  +
+  labs(x = "Rating", y = "Number of hikes") +
+  theme_minimal()
+```{r}
+# COMMENT on the change in the code and the corresponding change in the plot
+ggplot(hikes, aes(x = rating)) +
+  geom_bar(color = "orange", fill = "blue")  +
+  labs(x = "Rating", y = "Number of hikes") +
+  theme_minimal()
+```
+```{r}
+# COMMENT on the change in the code and the corresponding change in the plot
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram(color = "white") 
+```
+
+```{r}
+# COMMENT on the change in the code and the corresponding change in the plot
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram(color = "white", binwidth = 5) +
+  labs(x = "Elevation (feet)", y = "Number of hikes")
+```
+
+```{r}
+
+```
+
