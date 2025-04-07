@@ -24,4 +24,21 @@ starbucks <- read.csv("https://mac-stat.github.io/data/starbucks.csv")
 ```{r}
 starbucks_mn <- read.csv("https://mac-stat.github.io/data/starbucks.csv")
 ```
+```{r}
+# Load tidyverse package for plotting and wrangling
+library(tidyverse)
+
+# Import the data
+weather <- read.csv("https://mac-stat.github.io/data/weather_3_locations.csv") |> 
+  mutate(date = as.Date(date))
+```
+```{r}
+ggplot(weather, aes(y = temp3pm, x = temp9am, color = location)) + 
+  geom_point()
+```
+```{r}
+ggplot(weather, aes(y = temp3pm, x = temp9am, color = location)) + 
+  geom_point() + 
+  labs(x = "A", y = "B", title = "C", color = "D")  
+```
 
