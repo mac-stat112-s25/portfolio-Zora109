@@ -1,0 +1,79 @@
+---
+title: "Best Work"
+format: html
+---
+
+```{r}
+library(tidyverse)
+
+```
+
+
+```{r}
+colleges <- read_csv("~/Desktop/portfolio-Zora109/data/colleges.csv")
+```
+
+```{r}
+unique(colleges$state)
+```
+```{r}
+ca_colleges <- colleges %>%
+  filter(state == "California") %>%
+  group_by(county) %>%
+  summarise(total_cases = sum(cases, na.rm = TRUE))
+```
+
+```{r}
+library(tidyverse)
+library(sf)
+library(tigris)
+library(viridis)
+
+
+```
+
+```{r}
+list.files("data/ca_shapefile")
+```
+
+
+```{r}
+us_shape <- maps::map("county", "California")
+
+```
+```{r}
+library(ggplot2)
+ca_map <- map_data("county", "California")
+
+```
+
+```{r}
+ca_cases <- colleges %>%
+  filter(state == "California") %>%
+  group_by(county) %>%
+  summarise(total_cases = sum(cases, na.rm = TRUE)) %>%
+  mutate(county = tolower(county)) 
+```
+
+```{r}
+ca_map_data <- left_join(ca_map, ca_cases, by = c("subregion" = "county"))
+```
+
+```{r}
+ggplot(ca_map_data, aes(x = long, y = lat, group = group, fill = total_cases)) +
+  geom_polygon(color = "white") +
+  coord_fixed(1.3) +
+  scale_fill_viridis_c(option = "magma", na.value = "grey90") +
+  theme_minimal() +
+  labs(
+    title = "California College COVID-19 Cases by County",
+    subtitle = "Using {maps} county data and colleges.csv",
+    fill = "Total Cases"
+  )
+
+```
+:::
+This choropleth map shows the total number of COVID-19 cases reported by colleges across California, grouped by county. The counties with the highest concentrations of cases—such as Los Angeles, San Diego, and Riverside—are also home to some of the state's largest universities. In contrast, many rural counties show few or no reported cases, highlighting the urban–rural disparity in college density and reporting.
+
+:::
+

@@ -1,0 +1,28 @@
+---
+title: "ica-reshaping"
+format: html
+---
+
+```{r}
+library(tidyverse)
+penguins <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv')
+```
+```{r}
+penguin_avg <- penguins |> 
+  group_by(species, sex) |> 
+  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE)) |> 
+  na.omit()
+```
+
+```{r}
+sleep_wide <- read.csv("https://mac-stat.github.io/data/sleep_wide.csv")
+```
+
+
+```{r}
+head(sleep_wide)
+```
+```{r}
+
+```
+

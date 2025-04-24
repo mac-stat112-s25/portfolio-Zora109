@@ -1,0 +1,75 @@
+---
+title: "Dates"
+format: html
+---
+
+```{r}
+library(tidyverse)
+penguins <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv')
+
+# Check it out
+head(penguins)
+```
+```{r}
+# Create a dataset with just Adelie and Chinstrap using %in%
+# Pipe this into `count(species)` to confirm that you only have these 2 species
+ penguins |> 
+  filter(species %in% c("Adelie","Chinstrap"))|> 
+  count(species)
+```
+
+```{r}
+# Create a dataset with just Adelie and Chinstrap using !=
+# Pipe this into `count(species)` to confirm that you only have these 2 species
+penguins |> 
+   filter(species != "Gentoo") |> 
+  count(species)
+```
+```{r}
+head(penguins)
+```
+```{r}
+# NOTE the use of is.na()
+penguins |> 
+  summarize(sum(is.na(body_mass_g)))
+```
+```{r}
+# NOTE the use of is.na()
+penguins_w_body_mass <- penguins |> 
+  filter(!is.na(body_mass_g))
+
+# Compare the number of penguins in this vs the original data
+nrow(penguins_w_body_mass)
+```
+
+```{r}
+nrow(penguins)
+```
+```{r}
+penguins_w_body_mass |> 
+  summarize(sum(is.na(sex)))
+```
+
+```{r}
+penguins_complete <- penguins |> 
+  na.omit()
+```
+```{r}
+# First: recall the variable names
+names(penguins)
+```
+```{r}
+# Use a shortcut to keep everything but the year and island variables
+penguins |> 
+  select(-"island",- "year")
+```
+```{r}
+# Use a shortcut to keep only species and the penguin characteristics measured in mm
+penguins|>
+  select("species","bill_length_mm","bill_depth_mm", "flipper_length_mm")
+```
+```{r}
+# Use a shortcut to keep only species and bill-related measurements
+
+```
+
